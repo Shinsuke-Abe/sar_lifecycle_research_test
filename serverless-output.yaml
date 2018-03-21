@@ -1,0 +1,10 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Has simple function for research repository lifecycle.
+Resources:
+  HelloFunction:
+    Properties:
+      CodeUri: s3://test-lambda-package-bucket/b236b3d4de4af27cc029a651a342bf31
+      Handler: handler.hello
+      Runtime: python3.6
+    Type: AWS::Serverless::Function
+Transform: AWS::Serverless-2016-10-31
