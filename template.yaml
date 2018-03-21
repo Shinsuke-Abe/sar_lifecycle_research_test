@@ -7,4 +7,16 @@ Resources:
     Properties:
       Handler: handler.hello
       Runtime: python3.6
-
+      Environment:
+        Variables:
+          HELLO_TABLE: !Ref HelloTable
+      CodeUri: 'app.zip'
+  HelloTable:
+    Type: AWS::Serverless::SimpleTable
+    Properties:
+      PrimaryKey:
+        Name: Id
+        Type: String
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5

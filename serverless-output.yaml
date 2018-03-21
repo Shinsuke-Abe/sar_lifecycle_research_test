@@ -3,8 +3,21 @@ Description: Has simple function for research repository lifecycle.
 Resources:
   HelloFunction:
     Properties:
-      CodeUri: s3://test-lambda-package-bucket/b236b3d4de4af27cc029a651a342bf31
+      CodeUri: s3://test-lambda-package-bucket/91c14828de69501c94d7988641e961ce
+      Environment:
+        Variables:
+          HELLO_TABLE:
+            Ref: HelloTable
       Handler: handler.hello
       Runtime: python3.6
     Type: AWS::Serverless::Function
+  HelloTable:
+    Properties:
+      PrimaryKey:
+        Name: Id
+        Type: String
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
+    Type: AWS::Serverless::SimpleTable
 Transform: AWS::Serverless-2016-10-31
